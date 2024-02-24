@@ -21,7 +21,7 @@ class BookBase(BaseModel):
 class BookCreate(BookBase):
     pass
 
-class Book(BookBase):
+class BookRES(BookBase):
     id: int
 
     class Config:
