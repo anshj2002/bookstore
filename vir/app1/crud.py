@@ -1,32 +1,38 @@
 from typing import List
+from app1.database import SessionLocal
+from sqlalchemy.orm import Session
 
-from .models import Book
+from .models import Book, BookCreate
 
-books_db = []
 
-def create_book(book: Book):
-    books_db.append(book)
-    return book
+def create_book(book: BookCreate, db: Session):
+    db_book = Book(**book.dict())
+    db.add(db_book)
+    db.commit()
+    db.refresh(db_book)
+    return db_book
 
-def get_all_books():
-    return books_db
+def get_all_books(db: Session):
+    return db.query(Book).all()
 
-def get_book_by_title(title: str):
-    for book in books_db:
-        if book.title == title:
-            return book
+def get_book_by_title(title: str,db: Session):
+    return db.query(Book).filter(Book.title == title).first()
+
+def update_book_by_title(title: str, updated_book: BookCreate, db: Session):
+    book = db.query(Book).filter(Book.title == title).first()
+    if book:
+        for attr, value in updated_book.dict().items():
+            setattr(book, attr, value) if value else None
+        db.commit()
+        db.refresh(book)
+        return book
     return None
 
-def update_book_by_title(title: str, updated_book: Book):
-    for i, book in enumerate(books_db):
-        if book.title == title:
-            books_db[i] = updated_book
-            return updated_book
-    return None
 
-def delete_book_by_title(title: str):
-    for i, book in enumerate(books_db):
-        if book.title == title:
-            del books_db[i]
-            return True
+def delete_book_by_title(title: str, db: Session):
+    book = db.query(Book).filter(Book.title == title).first()
+    if book:
+        db.delete(book)
+        db.commit()
+        return True
     return False
