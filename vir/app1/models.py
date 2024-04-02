@@ -38,3 +38,12 @@ class BookRES(BookBase):
 
     class Config:
         orm_mode = True
+class BookRequest(BaseModel):
+    user_id: int
+    book_title: str
+    status: str = "pending" 
+
+class BookRequestStatus(BaseModel):
+    pending: str = "pending"
+    approved: str = "approved"
+    rejected: str = "rejected"

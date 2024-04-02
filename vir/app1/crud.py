@@ -1,26 +1,26 @@
-from typing import List, Dict, Optional
-from app1.database import SessionLocal
+from typing import List, Optional
 from sqlalchemy.orm import Session
-from .models import User
+from .models import User, User1
 from .models import Book, BookCreate
+from passlib.context import CryptContext
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def get_user_by_id(db: Session, user_id: int) -> Optional[User]:
-    return db.query(User).filter(User.id == user_id).first()
+    return db.query(User1).filter(User1.id == user_id).first()
 
 # Function to get a user by username
 def get_user_by_username(db: Session, username: str) -> Optional[User]:
-    return db.query(User).filter(User.username == username).first()
+    return db.query(User1).filter(User1.username == username).first()
 
 # Function to create a new user
-def create_user(db: Session, user: User) -> User:
+def create_db_user(db: Session, user: User1) -> Optional[User1]:
     db.add(user)
     db.commit()
     db.refresh(user)
     return user
-
 # Function to update user details
-def update_user(db: Session, user_id: int, user: User) -> Optional[User]:
-    db_user = db.query(User).filter(User.id == user_id).first()
+def update_db_user(db: Session, user_id: int, user: User) -> Optional[User]:
+    db_user = db.query(User1).filter(User1.id == user_id).first()
     if db_user:
         db_user.username = user.username
         db_user.password = user.password
@@ -31,7 +31,7 @@ def update_user(db: Session, user_id: int, user: User) -> Optional[User]:
 
 # Function to delete a user
 def delete_user(db: Session, user_id: int) -> Optional[User]:
-    db_user = db.query(User).filter(User.id == user_id).first()
+    db_user = db.query(User1).filter(User1.id == user_id).first()
     if db_user:
         db.delete(db_user)
         db.commit()
@@ -45,7 +45,7 @@ def create_book(book: BookCreate, db: Session):
     db.refresh(db_book)
     return db_book
 
-def get_all_books(db: Session):
+def get_all_books(db: Session) -> List[Book]:
     return db.query(Book).all()
 
 def get_book_by_title(title: str,db: Session):
