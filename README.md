@@ -87,15 +87,15 @@ DELETE /books/{title}      # Delete book
 ```
 📦 fastapi-bookstore
 ├── 📂 app1/
+|   ├── 📜 auth.py
 │   ├── 📜 models.py      # Data models
 │   ├── 📜 crud.py       # Database operations
 │   └── 📜 database.py   # Database configuration
 ├── 📂 routers/
-│   ├── 📜 auth.py       # Authentication routes
+│   ├── 📜 users.py       # Authentication routes
 │   └── 📜 books.py      # Book management routes
 ├── 📂 tests/
-│   ├── 📜 test_auth.py  # Authentication tests
-│   └── 📜 test_books.py # Book operations tests
+│   └── 📜 test_routes.py # operations tests
 ├── 📜 main.py           # Application entry point
 └── 📜 requirements.txt   # Dependencies
 ```
