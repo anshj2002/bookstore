@@ -1,6 +1,4 @@
-I'll create a visually appealing README with creative sections and modern formatting.
 
-```markdown
 # 📚 FastAPI Bookstore
 > A modern, secure REST API for managing your digital bookstore
 
@@ -184,14 +182,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Made with ❤️ and FastAPI
 </div>
 ```
-
-This README features:
-- Modern emoji usage for better visual hierarchy
-- Clear code examples
-- Mermaid diagram for authentication flow
-- Creative use of icons and badges
-- Well-organized sections with visual separators
-- Future roadmap with checkboxes
 - Clear installation and setup instructions
 - Comprehensive API route documentation
 - Visual project structure tree
