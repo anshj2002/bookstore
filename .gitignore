@@ -17,6 +17,7 @@ build/
 # Environment variables
 .env
 .venv
+vir/
 env/
 venv/
 
