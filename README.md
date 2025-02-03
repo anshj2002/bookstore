@@ -181,9 +181,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
 Made with ❤️ and FastAPI
 </div>
-```
-- Clear installation and setup instructions
-- Comprehensive API route documentation
-- Visual project structure tree
-
-Would you like me to modify or enhance any particular section?
